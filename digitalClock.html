@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <style>
+      body {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 96vh;
+      }
+      h1 {
+        font-size: 5rem;
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="showTime">You Can See Time</h1>
+    <h1 id="showDay">You Can See Day</h1>
+
+    <script>
+      const showTime = document.getElementById('showTime');
+      const showDay = document.getElementById('showDay');
+
+      setInterval(() => {
+        const dateInfo = new Date();
+        showTime.textContent =
+          check(dateInfo.getHours() % 12) +
+          ' : ' +
+          check(dateInfo.getMinutes()) +
+          ' : ' +
+          check(dateInfo.getSeconds()) +
+          '  ' +
+          AMPM();
+
+        showDay.textContent =
+          check(dateInfo.getDate()) +
+          ' / ' +
+          check(dateInfo.getMonth() + 1) +
+          ' / ' +
+          dateInfo.getFullYear();
+
+        function check(num) {
+          if (num < 10) {
+            num = '0' + num;
+          }
+          return num;
+        }
+
+        function AMPM() {
+          return dateInfo.getHours() < 12 ? 'AM' : 'PM';
+        }
+      }, 950);
+
+      //   setTimeout(() => {
+      //       location.reload();
+      //   }, 950);
+      
+    </script>
+  </body>
+</html>
